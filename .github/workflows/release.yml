@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout del repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -29,7 +29,7 @@ jobs:
         run: python scripts/package_skill.py oh-my-nino dist
 
       - name: Crea la GitHub Release con il .skill allegato
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: dist/oh-my-nino.skill
           name: "oh-my-nino ${{ github.ref_name }}"
