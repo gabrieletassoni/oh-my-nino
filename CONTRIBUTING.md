@@ -1,40 +1,41 @@
-# Come contribuire
+# Contributing
 
-## Cosa si può migliorare
+## What can be improved
 
-- **Nuovi check in `SKILL.md`**: aggiungi pattern pericolosi o sciatti non ancora coperti
-  nelle sezioni 🟥/🟧/🟦. Rispetta la proporzione gravità → tono.
-- **Nuovi eval in `evals.json`**: ogni nuovo check dovrebbe avere almeno un caso di test.
-- **Script di packaging**: estendi le validazioni in `scripts/package_skill.py` se il formato
-  del frontmatter evolve.
+- **New checks in `SKILL.md`**: add dangerous or sloppy patterns not yet covered in the
+  🟥/🟧/🟦 sections. Keep the severity → tone proportion consistent.
+- **New evals in `evals.json`**: every new check should have at least one test case.
+- **Packaging script**: extend validations in `scripts/package_skill.py` if the
+  frontmatter format evolves.
 
-## Flusso di lavoro
+## Workflow
 
-1. Modifica `oh-my-nino/SKILL.md` e/o aggiungi eval in `oh-my-nino/evals/evals.json`.
-2. Verifica che il packaging funzioni ancora:
+1. Edit `oh-my-nino/SKILL.md` and/or add evals in `oh-my-nino/evals/evals.json`.
+2. Verify the packaging still works:
    ```bash
    pip install pyyaml
    python scripts/package_skill.py oh-my-nino dist
    ```
-3. Testa manualmente i nuovi eval: sottoponi i prompt a un agente con la skill caricata e
-   confronta l'output con le `expectations` nel JSON.
-4. Apri una Pull Request con una descrizione sintetica del check aggiunto e del perché.
+3. Manually test new evals: submit the prompts to an agent with the skill loaded and
+   compare the output against the `expectations` in the JSON.
+4. Open a Pull Request with a concise description of the check added and why.
 
-## Vincoli del frontmatter di SKILL.md
+## SKILL.md frontmatter constraints
 
-Il packaging rifiuta il file se non rispetta questi limiti (vedi `scripts/package_skill.py`):
+The packaging script rejects the file if it doesn't meet these limits
+(see `scripts/package_skill.py`):
 
-| Campo | Regola |
+| Field | Rule |
 |---|---|
-| `name` | kebab-case, max 64 caratteri, no trattini iniziali/finali/doppi |
-| `description` | obbligatoria, max 1024 caratteri, no `<` o `>` |
+| `name` | kebab-case, max 64 characters, no leading/trailing/double hyphens |
+| `description` | required, max 1024 characters, no `<` or `>` |
 
-## Tono
+## Tone
 
-La skill è uno scherzo d'ufficio: il tono goliardico è parte integrante del progetto.
-I nuovi check devono restare proporzionati — gravità reale → gravità del tono — e non
-inventare difetti per fare la battuta. Un falso allarme rompe lo scherzo prima ancora del codice.
+The skill is an office joke: the playful tone is a core part of the project.
+New checks must remain proportional — real severity → tone severity — and must not
+invent flaws just to make a quip. A false alarm breaks the joke before it breaks the code.
 
-## Release
+## Releases
 
-Le release le gestisce il maintainer tramite tag `v*` (vedi README.md § CI/CD).
+Releases are managed by the maintainer via `v*` tags (see README.md § CI/CD).

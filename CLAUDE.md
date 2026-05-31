@@ -2,11 +2,14 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Cos'è questo progetto
+## What this project is
 
-Una skill per agenti AI di coding (Claude Code, Cowork, claude.ai) che esegue un sanity-check prima di azioni pericolose o codice sciatto. È un gioco d'ufficio dedicato al collega Nino (lore POLES®: blu → bluette), ma il controllo è reale e funzionante.
+A skill for AI coding agents (Claude Code, Cowork, claude.ai) that runs a sanity-check
+before dangerous actions or sloppy code. It's an office joke dedicated to colleague Nino
+(POLES® lore: blue → bluette), but the check is real and functional.
 
-Il cuore del progetto è `oh-my-nino/SKILL.md`: un file Markdown con frontmatter YAML che definisce la skill. Lo script di packaging la valida e la zipa in un `.skill` distribuibile.
+The heart of the project is `oh-my-nino/SKILL.md`: a Markdown file with a YAML frontmatter
+that defines the skill. The packaging script validates and zips it into a distributable `.skill`.
 
 ## Build
 
@@ -16,73 +19,80 @@ python scripts/package_skill.py oh-my-nino dist
 # → dist/oh-my-nino.skill
 ```
 
-Lo script valida il frontmatter di `SKILL.md` prima di creare il pacchetto. Se la validazione fallisce, stampa l'errore esatto e termina con exit code 1.
+The script validates the `SKILL.md` frontmatter before creating the package. If validation
+fails, it prints the exact error and exits with code 1.
 
 ## Release
 
-Il CI/CD pubblica automaticamente su GitHub Releases a ogni push di un tag `v*`:
+CI/CD publishes automatically to GitHub Releases on every `v*` tag push:
 
 ```bash
-git tag -a v1.0.0 -m "descrizione"
+git tag -a v1.0.0 -m "description"
 git push origin v1.0.0
 ```
 
-Il tag **deve** iniziare per `v`. Il workflow (`.github/workflows/release.yml`) fa: checkout → Python 3.12 → `pip install pyyaml` → packaging → creazione Release con il `.skill` allegato.
+The tag **must** start with `v`. The workflow (`.github/workflows/release.yml`) does:
+checkout → Python 3.12 → `pip install pyyaml` → packaging → Release creation with the
+`.skill` attached.
 
-Per rifare un tag esistente: cancellarlo in locale e in remoto, poi ricreare.
+To redo an existing tag: delete it locally and remotely, then recreate.
 
-## Architettura
+## Architecture
 
-**`oh-my-nino/SKILL.md`** — la skill vera e propria. Struttura:
-- Frontmatter YAML (`name`, `description`) — il `description` funge da trigger automatico: l'agente la consulta da solo quando lo scenario corrisponde
-- Corpo Markdown con: lore/contesto, tre livelli di severità (🟥/🟧/🟦), il Bluette-meter (⚪/🩵/🔵), formato output fisso, regole d'ingaggio
+**`oh-my-nino/SKILL.md`** — the skill itself. Structure:
+- YAML frontmatter (`name`, `description`) — `description` acts as an automatic trigger:
+  the agent consults it on its own when the scenario matches
+- Markdown body: lore/context, three severity levels (🟥/🟧/🟦), the Bluette-meter
+  (⚪/🩵/🔵), fixed output format, engagement rules
 
-**`scripts/package_skill.py`** — validazione + zip. Vincoli sul frontmatter:
-- `name`: kebab-case, max 64 caratteri, no trattini iniziali/finali/doppi
-- `description`: obbligatoria, max 1024 caratteri, no `<` o `>`
-- Esclusi dal pacchetto: `evals/`, `__pycache__/`, `.git`, `*.pyc`, `.DS_Store`
+**`scripts/package_skill.py`** — validation + zip. Frontmatter constraints:
+- `name`: kebab-case, max 64 characters, no leading/trailing/double hyphens
+- `description`: required, max 1024 characters, no `<` or `>`
+- Excluded from package: `evals/`, `__pycache__/`, `.git`, `*.pyc`, `.DS_Store`
 
-**`oh-my-nino/evals/evals.json`** — 6 casi di test con prompt, output atteso e liste di `expectations`. Non finisce nel `.skill`. Copre i tre verdetti: ⚪ Sbiadito (test 1, 4, 6), 🩵 Bluette (test 2, 5), 🔵 Blu pieno (test 3).
+**`oh-my-nino/evals/evals.json`** — 6 test cases with prompt, expected output and
+`expectations` lists. Not included in the `.skill`. Covers all three verdicts:
+⚪ Faded (tests 1, 4, 6), 🩵 Bluette (tests 2, 5), 🔵 Full blue (test 3).
 
-## Convenzioni della skill
+## Skill output conventions
 
-Il blocco di output della skill ha un formato fisso — non cambiarlo:
+The skill output block has a fixed format — do not change it:
 ```
 🩵 CONTROLLO BLUETTE
 Verdetto: <Blu pieno | Bluette | Sbiadito>
-Nino, <una/tre righe>
-Per tornare blu: <azione concreta>
+Nino, <one/three lines>
+Per tornare blu: <concrete action>
 ```
-Per il verdetto "Blu pieno" basta: `🔵 Tutto blu, Nino. Procedi pure.`
+For a "Blu pieno" verdict, one line only: `🔵 Tutto blu, Nino. Procedi pure.`
 
-Tono: goliardico ma proporzionato alla gravità reale. Nessun falso allarme per fare la battuta.
+Tone: playful but proportional to actual severity. No false alarms just to make a quip.
 
-## Lingua della documentazione
+## Documentation language
 
-Tutta la documentazione rivolta agli utenti va scritta **sia in inglese che in italiano**:
-- `README.md` → inglese (primario, target sviluppatori internazionali)
-- `README.it.md` → italiano (stessa cartella del README inglese)
+All user-facing documentation must be written **in both English and Italian**:
+- `README.md` → English (primary, target: international developers)
+- `README.it.md` → Italian (same folder as the English README)
 
-Questo vale per ogni cartella che contiene un README (es. `oh-my-nino/`). La convenzione è
-`README.md` (EN, primario) + `README.it.md` (IT), con badge di navigazione in cima a entrambi:
+This applies to every folder that contains a README (e.g. `oh-my-nino/`). The convention is
+`README.md` (EN, primary) + `README.it.md` (IT), with navigation badges at the top of both:
 
 ```markdown
 [🇬🇧 English](README.md) · [🇮🇹 Italiano](README.it.md)
 ```
 
-I file tecnici interni (SKILL.md, CLAUDE.md, CONTRIBUTING.md, CHANGELOG.md) restano in italiano
-in quanto rivolti al team di sviluppo.
+Technical internal files (SKILL.md, CLAUDE.md, CONTRIBUTING.md, CHANGELOG.md) are in
+English, as they target developers who are comfortable with English.
 
-## File del progetto
+## Project files
 
-| File | Scopo |
+| File | Purpose |
 |---|---|
-| `oh-my-nino/SKILL.md` | La skill (frontmatter YAML + logica in Markdown) |
-| `oh-my-nino/evals/evals.json` | Casi di test — esclusi dal `.skill` |
-| `scripts/package_skill.py` | Validazione frontmatter + creazione `.skill` |
-| `.github/workflows/release.yml` | CI/CD: tag `v*` → GitHub Release |
-| `README.md` / `README.it.md` | Documentazione radice EN/IT |
-| `oh-my-nino/README.md` / `oh-my-nino/README.it.md` | Documentazione skill EN/IT |
-| `CHANGELOG.md` | Storia delle versioni (Keep a Changelog) |
-| `CONTRIBUTING.md` | Come aggiungere check, eval e rilasciare |
+| `oh-my-nino/SKILL.md` | The skill (YAML frontmatter + logic in Markdown) |
+| `oh-my-nino/evals/evals.json` | Test cases — excluded from `.skill` |
+| `scripts/package_skill.py` | Frontmatter validation + `.skill` creation |
+| `.github/workflows/release.yml` | CI/CD: `v*` tag → GitHub Release |
+| `README.md` / `README.it.md` | Root documentation EN/IT |
+| `oh-my-nino/README.md` / `oh-my-nino/README.it.md` | Skill documentation EN/IT |
+| `CHANGELOG.md` | Version history (Keep a Changelog) |
+| `CONTRIBUTING.md` | How to add checks, evals, and release |
 | `LICENSE` | MIT |
