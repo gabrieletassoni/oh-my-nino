@@ -1,8 +1,8 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agents (OpenAI Codex, Gemini CLI, Cursor, Copilot, and others) when working with code in this repository.
 
-> **Keep in sync:** `AGENTS.md` is an identical copy of this file for non-Claude agents.
+> **Keep in sync:** `CLAUDE.md` is an identical copy of this file for Claude Code.
 > When editing one, apply the same changes to the other.
 
 ## What this project is
@@ -83,7 +83,7 @@ This applies to every folder that contains a README (e.g. `oh-my-nino/`). The co
 [🇬🇧 English](README.md) · [🇮🇹 Italiano](README.it.md)
 ```
 
-Technical internal files (SKILL.md, CLAUDE.md, CONTRIBUTING.md, CHANGELOG.md) are in
+Technical internal files (SKILL.md, AGENTS.md, CLAUDE.md, CONTRIBUTING.md, CHANGELOG.md) are in
 English, as they target developers who are comfortable with English.
 
 ## Project files

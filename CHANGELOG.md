@@ -6,6 +6,9 @@ versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- `AGENTS.md`: cross-agent guidance file (identical to `CLAUDE.md`, for OpenAI Codex, Gemini CLI, Cursor, Copilot, and others)
+
 ### Changed
 - Technical internal files (CLAUDE.md, CONTRIBUTING.md, CHANGELOG.md) translated to English
 
