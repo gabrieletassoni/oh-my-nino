@@ -6,6 +6,8 @@ versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.3] — 2026-05-31
+
 ### Added
 - `AGENTS.md`: cross-agent guidance file (identical to `CLAUDE.md`, for OpenAI Codex, Gemini CLI, Cursor, Copilot, and others)
 
@@ -38,7 +40,8 @@ versioning follows [Semantic Versioning](https://semver.org/).
 - Dev container with Python 3.12
 - Installation via `npx skills add gabrieletassoni/oh-my-nino` documented as primary method
 
-[Unreleased]: https://github.com/gabrieletassoni/oh-my-nino/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/gabrieletassoni/oh-my-nino/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/gabrieletassoni/oh-my-nino/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/gabrieletassoni/oh-my-nino/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/gabrieletassoni/oh-my-nino/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/gabrieletassoni/oh-my-nino/releases/tag/v1.0.0
