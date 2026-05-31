@@ -1,0 +1,30 @@
+# Artefatti di build
+dist/
+*.skill
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS / OS X
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100/
+.Trashes/
+
+# Linux
+*~
+.directory
+.Trash-*/
+.nfs*
+.fuse_hidden*

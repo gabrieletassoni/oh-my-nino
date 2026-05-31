@@ -1,0 +1,41 @@
+name: Release .skill
+
+# Parte a ogni push di un tag che inizia con "v" (es. v1.0.0).
+on:
+  push:
+    tags:
+      - "v*"
+
+# Serve per permettere al GITHUB_TOKEN di creare la Release.
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installa le dipendenze
+        run: pip install pyyaml
+
+      - name: Valida e impacchetta la skill
+        run: python scripts/package_skill.py oh-my-nino dist
+
+      - name: Crea la GitHub Release con il .skill allegato
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/oh-my-nino.skill
+          name: "oh-my-nino ${{ github.ref_name }}"
+          generate_release_notes: true
+          body: |
+            🩵 Release automatica di **oh-my-nino** `${{ github.ref_name }}`.
+
+            Scarica `oh-my-nino.skill` qui sotto e installalo nel tuo agente di coding
+            (Claude Code / Cowork / claude.ai → Skills). Tutto blu, Nino. 🔵

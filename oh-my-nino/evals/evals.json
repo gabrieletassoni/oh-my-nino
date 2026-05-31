@@ -1,0 +1,75 @@
+{
+  "skill_name": "oh-my-nino",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Devo sistemare la history del branch main, lancio `git push --force origin main` così pulisco i commit di prima. Ok procedo?",
+      "expected_output": "Verdetto ⚪ Sbiadito con uno STOP: il force push su main condiviso sovrascrive il lavoro altrui. Propone --force-with-lease e/o di farlo su un branch dedicato.",
+      "files": [],
+      "expectations": [
+        "Il verdetto sul Bluette-meter è 'Sbiadito' (il livello più grave)",
+        "Sconsiglia il force push su main e ne spiega il rischio (sovrascrivere lavoro condiviso)",
+        "Propone un'alternativa sicura concreta (es. --force-with-lease o un branch dedicato)",
+        "Usa il blocco di output 'CONTROLLO BLUETTE' e si rivolge a Nino"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Ho finito questa funzione, secondo me è a posto:\n\n```python\nAPI_KEY = \"sk-live-9f83hd72bdh\"\n\ndef fetch_user(uid):\n    try:\n        print(\"DEBUG chiamo api con\", uid)\n        r = requests.get(f\"https://api.tld/u/{uid}\", headers={\"x-key\": API_KEY})\n        return r.json()\n    except:\n        pass\n```\n\nLa committo?",
+      "expected_output": "Verdetto 🩵 Bluette: chiave API in chiaro, except vuoto che inghiotte gli errori, print di debug rimasto. Suggerisce env var, gestione/log dell'eccezione, rimozione del print.",
+      "files": [],
+      "expectations": [
+        "Il verdetto è 'Bluette'",
+        "Segnala la API key hardcoded come problema",
+        "Segnala l'except vuoto / errore inghiottito silenziosamente",
+        "Segnala il print di debug lasciato nel codice",
+        "Per ciascun problema indica una correzione concreta (es. variabile d'ambiente, gestire/loggare l'eccezione)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Ho fatto un piccolo refactor su un branch feature/clean-utils: ho estratto una funzione, rinominato le variabili in modo chiaro, niente segreti, ho aggiunto un test per input vuoto e lista normale e i test passano. Faccio il commit?",
+      "expected_output": "Verdetto 🔵 Blu pieno: niente da segnalare, via libera con una riga sola, senza inventare difetti.",
+      "files": [],
+      "expectations": [
+        "Il verdetto è 'Blu pieno' (via libera)",
+        "Non inventa problemi inesistenti pur di fare la battuta",
+        "La risposta è breve (una riga circa), senza sermoni"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Sul database di produzione devo togliere gli utenti di test, lancio `DELETE FROM users;` e via. Tutto ok?",
+      "expected_output": "Verdetto ⚪ Sbiadito con STOP: DELETE senza WHERE su produzione cancella TUTTI gli utenti. Suggerisce SELECT dello stesso scope, WHERE corretto e backup prima.",
+      "files": [],
+      "expectations": [
+        "Il verdetto è 'Sbiadito'",
+        "Identifica che il DELETE senza WHERE cancella l'intera tabella, non solo gli utenti di test",
+        "Suggerisce passi di sicurezza concreti (es. WHERE mirato, SELECT di verifica, backup) prima di eseguire"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Questa funzione calcola la media, secondo me basta così:\n\n```python\ndef media(valori):\n    return sum(valori) / len(valori)\n```\n\nLa lascio così?",
+      "expected_output": "Verdetto 🩵 Bluette: edge case ignorato (lista vuota -> divisione per zero). La classica dimenticanza del preciso. Suggerisce di gestire la lista vuota.",
+      "files": [],
+      "expectations": [
+        "Il verdetto è 'Bluette'",
+        "Identifica l'edge case della lista vuota / divisione per zero",
+        "Suggerisce come gestirlo (es. controllo su lista vuota, valore di default o eccezione esplicita)"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Nel mio script di cleanup ho questa riga: `rm -rf $TARGET/` dove `$TARGET` arriva da una variabile d'ambiente passata dall'esterno. La lascio così?",
+      "expected_output": "Verdetto \u26aa Sbiadito con STOP: se $TARGET e' vuota o non settata, `rm -rf $TARGET/` diventa `rm -rf /` (o cancella dalla directory corrente) in modo irreversibile. Suggerisce quoting, controllo non-vuoto, `set -u` e/o `: \"${TARGET:?}\"`.",
+      "files": [],
+      "expectations": [
+        "Il verdetto e' 'Sbiadito' (irreversibile)",
+        "Identifica che con $TARGET vuota o non settata il comando si espande in `rm -rf /` o cancella tutto a partire da una root indesiderata",
+        "Segnala che la variabile non e' quotata (problemi con spazi/espansioni)",
+        "Suggerisce protezioni concrete (es. virgolette intorno alla variabile, controllo che sia non vuota, `set -euo pipefail`, oppure `: \"${TARGET:?TARGET non impostata}\"`)"
+      ]
+    }
+  ]
+}
