@@ -6,6 +6,9 @@ il versionamento segue [Semantic Versioning](https://semver.org/lang/it/).
 
 ## [Unreleased]
 
+### Changed
+- Installazione via `npx skills add gabrieletassoni/oh-my-nino` promossa a metodo principale nel README
+
 ## [1.0.0] — 2026-05-31
 
 ### Added

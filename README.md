@@ -22,15 +22,26 @@ senza `WHERE`, segreti hardcoded, edge case ignorati...).
     └── evals/evals.json             # 6 casi di test (esclusi dal pacchetto)
 ```
 
-## Installazione (a mano)
+## Installazione
 
-Scarica `oh-my-nino.skill` dalla pagina [Releases](../../releases) e caricalo nel tuo agente:
+### Via npx (metodo consigliato)
+
+Funziona con Claude Code, Cursor, Cline, Copilot e altri 50+ agenti. Richiede solo Node.js:
+
+```bash
+npx skills add gabrieletassoni/oh-my-nino
+```
+
+Il CLI [skills](https://skills.sh) rileva automaticamente l'agente installato e copia la skill
+nella directory giusta. Dopo l'installazione l'agente la consulta da solo nei momenti opportuni,
+oppure puoi invocarla a mano: *"fammi un controllo bluette prima che committo"*.
+
+### Installazione manuale
+
+Scarica `oh-my-nino.skill` dalla pagina [Releases](../../releases):
 - **claude.ai / Cowork** → Settings → Capabilities → Skills → carica il `.skill`
 - **Claude Code / agenti da filesystem** → scompatta la cartella `oh-my-nino/` nella tua
   directory delle skill
-
-Poi l'agente la consulta da solo, oppure la invochi a mano: *"fammi un controllo bluette
-prima che committo"*.
 
 ## Build in locale
 
