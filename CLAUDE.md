@@ -57,6 +57,22 @@ Per il verdetto "Blu pieno" basta: `🔵 Tutto blu, Nino. Procedi pure.`
 
 Tono: goliardico ma proporzionato alla gravità reale. Nessun falso allarme per fare la battuta.
 
+## Lingua della documentazione
+
+Tutta la documentazione rivolta agli utenti va scritta **sia in inglese che in italiano**:
+- `README.md` → inglese (primario, target sviluppatori internazionali)
+- `README.it.md` → italiano (stessa cartella del README inglese)
+
+Questo vale per ogni cartella che contiene un README (es. `oh-my-nino/`). La convenzione è
+`README.md` (EN, primario) + `README.it.md` (IT), con badge di navigazione in cima a entrambi:
+
+```markdown
+[🇬🇧 English](README.md) · [🇮🇹 Italiano](README.it.md)
+```
+
+I file tecnici interni (SKILL.md, CLAUDE.md, CONTRIBUTING.md, CHANGELOG.md) restano in italiano
+in quanto rivolti al team di sviluppo.
+
 ## File del progetto
 
 | File | Scopo |
@@ -65,6 +81,8 @@ Tono: goliardico ma proporzionato alla gravità reale. Nessun falso allarme per 
 | `oh-my-nino/evals/evals.json` | Casi di test — esclusi dal `.skill` |
 | `scripts/package_skill.py` | Validazione frontmatter + creazione `.skill` |
 | `.github/workflows/release.yml` | CI/CD: tag `v*` → GitHub Release |
+| `README.md` / `README.it.md` | Documentazione radice EN/IT |
+| `oh-my-nino/README.md` / `oh-my-nino/README.it.md` | Documentazione skill EN/IT |
 | `CHANGELOG.md` | Storia delle versioni (Keep a Changelog) |
 | `CONTRIBUTING.md` | Come aggiungere check, eval e rilasciare |
 | `LICENSE` | MIT |

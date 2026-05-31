@@ -6,6 +6,15 @@ il versionamento segue [Semantic Versioning](https://semver.org/lang/it/).
 
 ## [Unreleased]
 
+### Added
+- `README.it.md` e `oh-my-nino/README.it.md`: versioni italiane dei README
+- `oh-my-nino/README.md` tradotto in inglese come lingua primaria
+- Badge di navigazione lingua in cima a tutti i README (`🇬🇧 English · 🇮🇹 Italiano`)
+
+### Changed
+- `README.md` tradotto in inglese come lingua primaria per sviluppatori internazionali
+- `CLAUDE.md`: aggiunta convenzione per documentazione bilingue EN/IT
+
 ## [1.0.2] — 2026-05-31
 
 ### Changed

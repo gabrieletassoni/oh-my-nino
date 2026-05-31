@@ -1,123 +1,128 @@
 # oh-my-nino 🩵
 
-Una **skill-scherzo** per le IA di coding, dedicata al collega **Nino**. Tono goliardico,
-sostanza seria: ti **rammenta che stai facendo una cosa alla cazzo o che stai per fare una
-minchiata** prima che la combini (force push su `main`, `rm -rf` con variabili vuote, SQL
-senza `WHERE`, segreti hardcoded, edge case ignorati...).
+[🇬🇧 English](README.md) · [🇮🇹 Italiano](README.it.md)
 
-> Nel modello attitudinale **POLES®** il **blu** è lo stile preciso e metodico. Nino è
-> uscito blu. In pratica, ogni tanto sbiadisce in **bluette** — un blu più slavato. Questa
-> skill fa la guardia a quel confine. Tutta la lore è in [`oh-my-nino/README.md`](oh-my-nino/README.md).
+---
 
-## Struttura del repository
+A **joke skill** for AI coding assistants, dedicated to colleague **Nino**. Playful tone,
+serious substance: it **reminds you that you're about to do something sloppy or make a
+serious blunder** before you actually do it (force push on `main`, `rm -rf` with empty
+variables, SQL without `WHERE`, hardcoded secrets, ignored edge cases...).
+
+> In the **POLES®** behavioural model, **blue** is the precise, analytical, methodical
+> style. Nino scored blue. In practice, he occasionally fades into **bluette** — a
+> washed-out blue. This skill guards that boundary. Full lore in
+> [`oh-my-nino/README.md`](oh-my-nino/README.md).
+
+## Repository structure
 
 ```
 .
-├── README.md                       # questo file (panoramica + CI/CD)
-├── .github/workflows/release.yml   # GitHub Action: pubblica il .skill su tag
-├── scripts/package_skill.py        # validazione + packaging in .skill
-└── oh-my-nino/                      # LA SKILL (è ciò che viene impacchettato)
-    ├── SKILL.md                     # la skill vera e propria
-    ├── README.md                    # README della skill (tono / lore)
-    └── evals/evals.json             # 6 casi di test (esclusi dal pacchetto)
+├── README.md                       # this file (overview + CI/CD)
+├── .github/workflows/release.yml   # GitHub Action: publishes .skill on tag
+├── scripts/package_skill.py        # validation + packaging into .skill
+└── oh-my-nino/                     # THE SKILL (what gets packaged)
+    ├── SKILL.md                    # the skill itself
+    ├── README.md                   # skill README (tone / lore)
+    └── evals/evals.json            # 6 test cases (excluded from package)
 ```
 
-## Installazione
+## Installation
 
-### Via npx (metodo consigliato)
+### Via npx (recommended)
 
-Funziona con Claude Code, Cursor, Cline, Copilot e altri 50+ agenti. Richiede solo Node.js:
+Works with Claude Code, Cursor, Cline, Copilot and 50+ other agents. Requires Node.js only:
 
 ```bash
 npx skills add gabrieletassoni/oh-my-nino
 ```
 
-Il CLI [skills](https://skills.sh) rileva automaticamente l'agente installato e copia la skill
-nella directory giusta. Dopo l'installazione l'agente la consulta da solo nei momenti opportuni,
-oppure puoi invocarla a mano: *"fammi un controllo bluette prima che committo"*.
+The [skills](https://skills.sh) CLI auto-detects the installed agent and copies the skill
+to the right directory. After installation the agent consults it automatically at the right
+moments, or you can invoke it manually: *"run a bluette check before I commit"*.
 
-### Installazione manuale
+### Manual installation
 
-Scarica `oh-my-nino.skill` dalla pagina [Releases](../../releases):
-- **claude.ai / Cowork** → Settings → Capabilities → Skills → carica il `.skill`
-- **Claude Code / agenti da filesystem** → scompatta la cartella `oh-my-nino/` nella tua
-  directory delle skill
+Download `oh-my-nino.skill` from the [Releases](../../releases) page:
+- **claude.ai / Cowork** → Settings → Capabilities → Skills → upload the `.skill` file
+- **Claude Code / filesystem-based agents** → unzip the `oh-my-nino/` folder into your
+  skills directory
 
-## Build in locale
+## Local build
 
 ```bash
 pip install pyyaml
 python scripts/package_skill.py oh-my-nino dist
-# -> crea dist/oh-my-nino.skill (la cartella evals/ viene esclusa)
+# -> creates dist/oh-my-nino.skill (evals/ folder is excluded)
 ```
 
-Lo script **valida** la `SKILL.md` (name kebab-case, description presente, niente `<`/`>`,
-limiti di lunghezza) e fallisce con un errore chiaro se qualcosa non torna.
+The script **validates** `SKILL.md` (kebab-case name, description present, no `<`/`>`,
+length limits) and fails with a clear error message if anything is wrong.
 
 ---
 
-## CI/CD — come far partire una release 🚀
+## CI/CD — how to publish a release 🚀
 
-La pubblicazione è automatica: **ogni push di un tag `v*` crea una nuova GitHub Release**
-con il file `.skill` allegato. Il workflow è in `.github/workflows/release.yml` e fa:
-checkout → setup Python → `pip install pyyaml` → validazione + packaging → release.
+Publishing is automatic: **every push of a `v*` tag creates a new GitHub Release** with
+the `.skill` file attached. The workflow is in `.github/workflows/release.yml` and does:
+checkout → Python setup → `pip install pyyaml` → validation + packaging → release.
 
-### Primo setup (una volta sola)
+### First-time setup (once only)
 
-1. Crea il repo su GitHub e fai push del codice:
+1. Create the repo on GitHub and push the code:
    ```bash
    git init
    git add .
    git commit -m "oh-my-nino: skill + CI/CD"
    git branch -M main
-   git remote add origin git@github.com:<utente>/oh-my-nino.git
+   git remote add origin git@github.com:<user>/oh-my-nino.git
    git push -u origin main
    ```
-2. Assicurati che le **Actions** siano abilitate e che il token abbia i permessi di
-   scrittura: **Settings → Actions → General → Workflow permissions → "Read and write
-   permissions"**. (Il workflow chiede già `contents: write`, ma se il default dell'org è
-   read-only va sbloccato qui.)
+2. Make sure **Actions** are enabled and the token has write permissions:
+   **Settings → Actions → General → Workflow permissions → "Read and write permissions"**.
+   (The workflow already requests `contents: write`, but if the org default is read-only
+   you need to unlock it here.)
 
-### Pubblicare una release (ogni volta)
+### Publishing a release (every time)
 
-Basta creare e pushare un tag che inizia per `v`:
+Just create and push a tag starting with `v`:
 
 ```bash
-git tag v1.0.0           # tag leggero
-# oppure annotato (consigliato):
-git tag -a v1.0.0 -m "Prima release di oh-my-nino"
+git tag v1.0.0           # lightweight tag
+# or annotated (recommended):
+git tag -a v1.0.0 -m "First oh-my-nino release"
 
-git push origin v1.0.0   # <-- questo fa partire il CI/CD
+git push origin v1.0.0   # <-- this triggers CI/CD
 ```
 
-Per pushare tutti i tag in un colpo solo: `git push origin --tags`.
+To push all tags at once: `git push origin --tags`.
 
-### Cosa succede dopo il push del tag
+### What happens after the tag push
 
-1. La Action parte (la vedi nella tab **Actions** del repo).
-2. Valida e impacchetta `oh-my-nino/` in `dist/oh-my-nino.skill`.
-3. Crea la Release chiamata `oh-my-nino v1.0.0` con note generate in automatico e il
-   `.skill` allegato come asset scaricabile.
+1. The Action runs (visible in the repo's **Actions** tab).
+2. It validates and packages `oh-my-nino/` into `dist/oh-my-nino.skill`.
+3. It creates a Release named `oh-my-nino v1.0.0` with auto-generated notes and the
+   `.skill` attached as a downloadable asset.
 
-### Aggiornare / rifare una release
+### Updating / redoing a release
 
-I tag sono immutabili per convenzione: per una nuova versione usa un **nuovo** tag
-(`v1.0.1`, `v1.1.0`, ...). Se proprio devi rifare lo stesso tag:
+Tags are immutable by convention: for a new version use a **new** tag
+(`v1.0.1`, `v1.1.0`, ...). If you really need to redo the same tag:
 
 ```bash
 git tag -d v1.0.0
-git push origin :refs/tags/v1.0.0   # cancella il tag remoto
+git push origin :refs/tags/v1.0.0   # delete remote tag
 git tag -a v1.0.0 -m "..." && git push origin v1.0.0
 ```
 
-### Se la release non parte
+### If the release doesn't trigger
 
-- Il tag **deve** iniziare per `v` (il filtro è `v*`). `1.0.0` da solo non scatta.
-- Hai pushato il **tag**, non solo il commit? (`git push origin v1.0.0`)
-- Workflow permissions impostate su **Read and write** (vedi setup sopra).
-- Errore di validazione nella Action → leggi il log dello step *"Valida e impacchetta"*:
-  ti dice esattamente cosa non va nella `SKILL.md`.
+- The tag **must** start with `v` (the filter is `v*`). A bare `1.0.0` won't fire.
+- Did you push the **tag**, not just the commit? (`git push origin v1.0.0`)
+- Workflow permissions set to **Read and write** (see setup above).
+- Validation error in the Action → read the *"Valida e impacchetta"* step log:
+  it tells you exactly what's wrong in `SKILL.md`.
 
 ---
 
-*Made with 💙 (sì, blu) per Nino e per chiunque ogni tanto sbiadisca.*
+*Made with 💙 (yes, blue) for Nino and for everyone who fades every now and then.*

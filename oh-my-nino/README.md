@@ -1,86 +1,92 @@
 # oh-my-nino 🩵
 
-> Una skill-scherzo per Nino. Goliardica nel tono, seria nella sostanza.
+[🇬🇧 English](README.md) · [🇮🇹 Italiano](README.it.md)
 
-## Cos'è (e cosa NON è)
+---
 
-`oh-my-nino` è una skill pensata per le IA di coding (Claude Code, Cowork, agenti vari)
-che fa una cosa sola: **ti rammenta che stai facendo una cosa alla cazzo o che stai per
-fare una minchiata** — prima che la combini.
+> A joke skill for Nino. Playful in tone, serious in substance.
 
-È, dichiaratamente, **uno scherzo d'ufficio** dedicato al collega **Nino**. Ma sotto la
-presa per il culo c'è un controllo vero: un sanity-check su operazioni pericolose,
-codice sciatto ed errori classici. Quindi sì, è una skill funzionante a tutti gli
-effetti, non un giocattolo vuoto.
+## What it is (and what it's NOT)
 
-**Importante**: nessuna offesa, nessuna cattiveria. Si prende in giro il *momento di
-sciatteria*, non la persona. Nino, se stai leggendo: ti vogliamo bene. È che ogni tanto
-sbiadisci. 💙
+`oh-my-nino` is a skill designed for AI coding assistants (Claude Code, Cowork, and
+others) that does one thing: **reminds you that you're doing something sloppy or are
+about to make a serious blunder** — before you actually do it.
 
-## Il lore (perché "bluette"?)
+It is, explicitly, **an office joke** dedicated to colleague **Nino**. But behind the
+ribbing there's a real check: a sanity-check on dangerous operations, sloppy code, and
+classic mistakes. So yes, it's a fully functional skill, not an empty toy.
 
-Nel modello attitudinale **POLES®** (automaticforms.it/poles-model) i profili si
-dividono in quadranti a colori. Il **blu** è lo stile **preciso, analitico, metodico**.
+**Important**: no offence, no malice. It mocks the *moment of sloppiness*, not the
+person. Nino, if you're reading this: we love you. It's just that you fade sometimes. 💙
 
-Nino è uscito **blu**. In teoria: il meticoloso della situazione.
+## The lore (why "bluette"?)
 
-In pratica, dopo una collezione memorabile di sue esternazioni, l'ufficio ha dovuto
-istituire una categoria nuova di zecca: il **bluette**. Cioè un blu più *slavato*, più
-*annacquato*. Uno che dovrebbe controllare tutto e invece, ogni tanto, tira via.
+In the **POLES®** behavioural assessment model (automaticforms.it/poles-model) profiles
+are distributed across four colour quadrants. **Blue** is the **precise, analytical,
+methodical** style.
 
-Questa skill fa la guardia al confine tra **blu** e **bluette**. Niente di personale:
-è scienza POLES applicata. 🧪
+Nino scored **blue**. In theory: the meticulous one.
 
-## Cosa controlla davvero
+In practice, after a memorable collection of his remarks, the office had to coin a
+brand-new sub-category: **bluette**. That is, a more *washed-out*, more *watered-down*
+blue. Someone who should check everything but every now and then just cuts corners.
 
-Tre livelli di severità, con tono proporzionato alla gravità reale:
+This skill guards the boundary between **blue** and **bluette**. Nothing personal:
+it's applied POLES science. 🧪
 
-- 🟥 **Minchiate vere (irreversibili)** → STOP. Force push su main, `rm -rf` con variabili
-  vuote, SQL senza `WHERE`, drop/truncate, lavoro diretto su prod, sovrascritture senza backup.
-- 🟧 **Roba alla cazzo (recuperabile)** → il bluette classico. Segreti hardcoded, `except: pass`,
-  debug lasciato dentro, magic number, copia-incolla, naming tipo `final_v3`.
-- 🟦 **Dimenticanze del preciso** → edge case ignorati, codice non letto/non eseguito,
-  convenzioni del progetto saltate.
+## What it actually checks
 
-E un verdetto finale sul **Bluette-meter**: 🔵 Blu pieno · 🩵 Bluette · ⚪ Sbiadito.
+Three severity levels, with tone proportional to actual gravity:
 
-## Come si usa
+- 🟥 **Real blunders (irreversible)** → STOP. Force push on main, `rm -rf` with empty
+  variables, SQL without `WHERE`, drop/truncate, working directly on prod, overwrites
+  without backup.
+- 🟧 **Half-assed stuff (recoverable)** → classic bluette. Hardcoded secrets,
+  `except: pass`, debug left in, magic numbers, copy-paste, naming like `final_v3`.
+- 🟦 **Oversights of the precise** → ignored edge cases, unread/unrun code, project
+  conventions skipped.
 
-1. Copia la cartella `oh-my-nino/` (con dentro `SKILL.md`) dove il tuo agente cerca le skill.
-   - **Claude Code / agenti con skill da filesystem**: nella tua directory delle skill.
-   - **Claude.ai / Cowork**: caricala come skill / impacchettala in un file `.skill`.
-2. Da lì l'agente la consulta **da solo** nei momenti giusti (prima di un push, di un'azione
-   distruttiva, quando dichiara "fatto", ecc.), grazie alla `description`.
-3. Puoi anche invocarla a mano: *"fammi un controllo bluette prima che committo"*.
+And a final verdict on the **Bluette-meter**: 🔵 Full blue · 🩵 Bluette · ⚪ Faded.
 
-## Cosa aspettarsi come output
+## How to use it
 
-Quando c'è qualcosa da dire:
+1. Copy the `oh-my-nino/` folder (containing `SKILL.md`) where your agent looks for skills.
+   - **Claude Code / filesystem-based agents**: into your skills directory.
+   - **Claude.ai / Cowork**: upload it as a skill / package it into a `.skill` file.
+2. The agent will consult it **automatically** at the right moments (before a push, a
+   destructive action, when declaring "done", etc.), thanks to the `description`.
+3. You can also invoke it manually: *"run a bluette check before I commit"*.
+
+## What to expect as output
+
+When there's something to flag:
 
 ```
 🩵 CONTROLLO BLUETTE
 Verdetto: Bluette
-Nino, da fuori funziona, ma hai una API key in chiaro e un except che si mangia gli errori.
-Per tornare blu: sposta la chiave in una variabile d'ambiente e gestisci l'eccezione.
+Nino, it works on the surface, but you have an API key in plaintext and an except that
+swallows errors silently.
+Per tornare blu: move the key to an environment variable and handle the exception.
 ```
 
-Quando è tutto a posto:
+When everything is fine:
 
 ```
 🔵 Tutto blu, Nino. Procedi pure.
 ```
 
-## La regola d'oro
+## The golden rule
 
-Lo scherzo regge **solo se il controllo è giusto**. La skill non inventa difetti per fare
-la battuta: se il codice è pulito, dice 🔵 e ti lascia in pace. Un falso allarme in stile
-Nino non fa ridere — rompe le palle. Accuratezza prima della comicità, sempre.
+The joke only holds **if the check is accurate**. The skill doesn't invent flaws to make
+a quip: if the code is clean, it says 🔵 and leaves you alone. A false alarm in Nino's
+style isn't funny — it's annoying. Accuracy before comedy, always.
 
 ## Files
 
-- `SKILL.md` — la skill vera e propria, funzionante. È lì che c'è tutta la logica.
-- `README.md` — questo file, per spiegare il tono e zittire chi si offende. 😄
+- `SKILL.md` — the actual working skill. All the logic lives there.
+- `README.md` — this file, to explain the tone and silence anyone who takes offence. 😄
+- `README.it.md` — Italian version of this file.
 
 ---
 
-*Made with 💙 (sì, blu) per Nino e per chiunque ogni tanto sbiadisca. Capita a tutti.*
+*Made with 💙 (yes, blue) for Nino and for everyone who fades every now and then. It happens to all of us.*
