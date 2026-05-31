@@ -6,8 +6,11 @@ il versionamento segue [Semantic Versioning](https://semver.org/lang/it/).
 
 ## [Unreleased]
 
+## [1.0.2] — 2026-05-31
+
 ### Changed
 - Installazione via `npx skills add gabrieletassoni/oh-my-nino` promossa a metodo principale nel README
+- GitHub Actions aggiornate a versioni Node.js 24-native: `actions/checkout@v6`, `actions/setup-python@v6`, `softprops/action-gh-release@v3`
 
 ## [1.0.0] — 2026-05-31
 
@@ -19,5 +22,6 @@ il versionamento segue [Semantic Versioning](https://semver.org/lang/it/).
 - CI/CD GitHub Actions: pubblicazione automatica su tag `v*`
 - Dev container con Python 3.12
 
-[Unreleased]: https://github.com/gabrieletassoni/oh-my-nino/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/gabrieletassoni/oh-my-nino/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/gabrieletassoni/oh-my-nino/compare/v1.0.0...v1.0.2
 [1.0.0]: https://github.com/gabrieletassoni/oh-my-nino/releases/tag/v1.0.0
